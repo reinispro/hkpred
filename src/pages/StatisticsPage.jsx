@@ -55,6 +55,10 @@ import React, { useState, useEffect } from 'react';
             
             const winRate = totalPredictions > 0 ? parseFloat(((correctPredictions / totalPredictions) * 100).toFixed(1)) : 0;
             
+            const noScore = predictions.filter(
+              (p) => (p.points_awarded ?? 0) === 0
+            ).length;
+
             setStats({
               totalPoints: user.points,
               totalPredictions,
@@ -67,6 +71,7 @@ import React, { useState, useEffect } from 'react';
                 preciseScores: user.precise_score_bonus,
                 goalDifference: user.goal_difference_bonus,
                 correctWinner: user.correct_winner_bonus,
+                noScore,
               },
             });
 
@@ -102,10 +107,11 @@ import React, { useState, useEffect } from 'react';
       }
 
       const performanceData = [
-        { subject: 'Precise Draws', count: stats.tiebreakers.preciseDraws || 0 },
-        { subject: 'Precise Scores', count: stats.tiebreakers.preciseScores || 0 },
-        { subject: 'Goal Diff.', count: stats.tiebreakers.goalDifference || 0 },
-        { subject: 'Right Winner', count: stats.tiebreakers.correctWinner || 0 },
+        { subject: 'Precīzs neizšķirts', count: stats.tiebreakers.preciseDraws || 0 },
+        { subject: 'Precīzs rezultāts', count: stats.tiebreakers.preciseScores || 0 },
+        { subject: 'Vārtu starpība.', count: stats.tiebreakers.goalDifference || 0 },
+        { subject: 'Pareizs uzvarētājs', count: stats.tiebreakers.correctWinner || 0 },
+        { subject: 'Bez rezultāta', count: stats.tiebreakers.noScore || 0 },
       ];
 
       return (
