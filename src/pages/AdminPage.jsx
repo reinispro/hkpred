@@ -84,11 +84,11 @@
                 </div>
                 <div className="flex items-center justify-between p-4 rounded-lg bg-white/10">
                   <div>
-                    <Label htmlFor="special-lock-time" className="text-lg font-medium">Special Lock Times</Label>
+                    <Label htmlFor="special-lock-times" className="text-lg font-medium">Special Lock Times</Label>
                     <p className="text-sm text-white/70">If enabled, top 3 players have different prediction lock times (1st: 1h, 2nd: 45m, 3rd: 30m before game).</p>
                   </div>
                   <Switch
-                    id="special-lock-time"
+                    id="special-lock-times"
                     checked={localSettings.special_lock_times?.is_enabled || false}
                     onCheckedChange={() => handleSettingToggle('special_lock_times')}
                   />
