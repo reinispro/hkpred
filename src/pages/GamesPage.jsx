@@ -46,9 +46,9 @@ import React, { useState, useEffect, useCallback } from 'react';
           </DialogTrigger>
           <DialogContent className="glass-card text-white border-white/20 max-w-md">
             <DialogHeader>
-              <DialogTitle>Predictions for {gameName}</DialogTitle>
+              <DialogTitle>Prognozes spēlei {gameName}</DialogTitle>
               <DialogDescription className="text-white/70">
-                See what other players predicted for this match.
+                Šeit tu redzi citu spēlētāju prognozes par šo spēli.
               </DialogDescription>
             </DialogHeader>
             <div className="max-h-[60vh] overflow-y-auto">
@@ -155,7 +155,7 @@ import React, { useState, useEffect, useCallback } from 'react';
             <meta name="description" content="View past game results and prediction outcomes." />
           </Helmet>
           <div className="space-y-6">
-            <h1 className="text-4xl font-bold text-white tracking-tight">Game History</h1>
+            <h1 className="text-4xl font-bold text-white tracking-tight">Spēļu Vēsture</h1>
             {loading ? (
               <Card className="glass-card text-white"><CardContent><p className="text-center p-8">Loading game history...</p></CardContent></Card>
             ) : games.length > 0 ? (
@@ -163,20 +163,20 @@ import React, { useState, useEffect, useCallback } from 'react';
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <ListOrdered />
-                    <span>Completed & Live Games</span>
+                    <span>Spēles, kas ir beigušās un tās, kas notiek šobrīd</span>
                   </CardTitle>
-                  <CardDescription className="text-white/70">Results and points for past and ongoing matches.</CardDescription>
+                  <CardDescription className="text-white/70">Rezultāti un tavi punkti par spēlēm, kas ir beigušās, vai notiek šobrīd.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Table>
                     <TableHeader>
                       <TableRow className="border-white/20 hover:bg-white/10">
-                        <TableHead className="text-white/80">Match</TableHead>
-                        <TableHead className="text-white/80">Your Prediction</TableHead>
-                        <TableHead className="text-white/80">Score</TableHead>
-                        <TableHead className="text-white/80">Points</TableHead>
-                        <TableHead className="text-white/80">Date</TableHead>
-                        <TableHead className="text-white/80">Others' Predictions</TableHead>
+                        <TableHead className="text-white/80">Spēle</TableHead>
+                        <TableHead className="text-white/80">Tava Prognoze</TableHead>
+                        <TableHead className="text-white/80">Rezultāts</TableHead>
+                        <TableHead className="text-white/80">Punkti</TableHead>
+                        <TableHead className="text-white/80">Datums</TableHead>
+                        <TableHead className="text-white/80">Citu Prognozes</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
