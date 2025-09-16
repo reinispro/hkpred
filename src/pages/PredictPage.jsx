@@ -99,38 +99,39 @@ const PredictPage = () => {
   };
 
   const savePrediction = async (gameId, prediction) => {
-    const { prediction_a, prediction_b } = prediction;
+  const { prediction_a, prediction_b } = prediction;
 
-    if (prediction_a === null || prediction_b === null || prediction_a === '' || prediction_b === '') {
-      return;
-    }
+  if (prediction_a === null || prediction_b === null || prediction_a === '' || prediction_b === '') {
+    return;
+  }
 
+  setPredictions(prev => ({
+    ...prev,
+    [gameId]: { ...prev[gameId], status: 'saving' }
+  }));
+
+  const { data, error } = await supabase.functions.invoke('save-prediction', {
+    body: {
+      user_id: user.id,
+      game_id: gameId,
+      prediction_a,
+      prediction_b,
+    },
+  });
+
+  if (error || data?.error) {
     setPredictions(prev => ({
       ...prev,
-      [gameId]: { ...prev[gameId], status: 'saving' }
+      [gameId]: { ...prev[gameId], status: 'error' }
     }));
+  } else {
+    setPredictions(prev => ({
+      ...prev,
+      [gameId]: { ...prev[gameId], status: 'saved' }
+    }));
+  }
+};
 
-    const { error } = await supabase
-      .from('predictions')
-      .upsert({
-        user_id: user.id,
-        game_id: gameId,
-        prediction_a,
-        prediction_b,
-      }, { onConflict: 'user_id,game_id' });
-
-    if (error) {
-      setPredictions(prev => ({
-        ...prev,
-        [gameId]: { ...prev[gameId], status: 'error' }
-      }));
-    } else {
-      setPredictions(prev => ({
-        ...prev,
-        [gameId]: { ...prev[gameId], status: 'saved' }
-      }));
-    }
-  };
 
   const debouncedSave = useCallback(debounce((gameId, prediction) => {
     savePrediction(gameId, prediction);
