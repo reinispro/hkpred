@@ -44,7 +44,7 @@ import React, { useState, useEffect } from 'react';
             <meta name="description" content="View upcoming games and prepare for predictions." />
           </Helmet>
           <div className="space-y-6">
-            <h1 className="text-4xl font-bold text-white tracking-tight">Upcoming Games</h1>
+            <h1 className="text-4xl font-bold text-white tracking-tight">Tuvākās spēles</h1>
             {loading ? (
                <Card className="glass-card text-white"><CardContent><p className="text-center p-8">Loading games...</p></CardContent></Card>
             ) : upcomingGames.length > 0 ? (
@@ -69,7 +69,7 @@ import React, { useState, useEffect } from 'react';
                       </p>
                       <Button asChild variant="ghost" className="w-full justify-between mt-4 text-white hover:bg-white/20">
                         <Link to="/predict">
-                          <span>Make Prediction</span>
+                          <span>Prognozēt</span>
                           <ChevronRight className="h-4 w-4" />
                         </Link>
                       </Button>
@@ -82,11 +82,11 @@ import React, { useState, useEffect } from 'react';
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Gamepad2 />
-                    <span>No Games Yet</span>
+                    <span>Pagaidām nav spēļu</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-white/80">No upcoming games scheduled. The admin needs to add new games.</p>
+                  <p className="text-white/80">Pagaidām nav speļu, gaidi, kad tās tiks pievienotas.</p>
                 </CardContent>
               </Card>
             )}

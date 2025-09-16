@@ -6,12 +6,12 @@
     import { useSupabaseAuth } from '@/contexts/SupabaseAuthContext';
 
     const navItems = [
-      { to: '/', icon: Gamepad2, label: 'Home' },
-      { to: '/predict', icon: Trophy, label: 'Predict' },
-      { to: '/games', icon: ListOrdered, label: 'Games' },
-      { to: '/statistics', icon: BarChart, label: 'Statistics' },
-      { to: '/top', icon: Trophy, label: 'Top' },
-      { to: '/rules', icon: ScrollText, label: 'Rules' },
+      { to: '/', icon: Gamepad2, label: 'Sākums' },
+      { to: '/predict', icon: Trophy, label: 'Prognozēt' },
+      { to: '/games', icon: ListOrdered, label: 'Spēles' },
+      { to: '/statistics', icon: BarChart, label: 'Statistika' },
+      { to: '/top', icon: Trophy, label: 'Tops' },
+      { to: '/rules', icon: ScrollText, label: 'Noteikumi' },
     ];
     
     const adminNavItem = { to: '/admin', icon: UserCog, label: 'Admin' };
