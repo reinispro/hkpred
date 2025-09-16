@@ -89,8 +89,8 @@
                   </div>
                   <Switch
                     id="special-lock-time"
-                    checked={localSettings.special_lock_time?.is_enabled || false}
-                    onCheckedChange={() => handleSettingToggle('special_lock_time')}
+                    checked={localSettings.special_lock_times?.is_enabled || false}
+                    onCheckedChange={() => handleSettingToggle('special_lock_times')}
                   />
                 </div>
               </CardContent>

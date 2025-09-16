@@ -57,7 +57,7 @@ const PredictPage = () => {
   }, [user, toast]);
 
   const fetchTopPlayers = useCallback(async () => {
-    if (!appSettings?.special_lock_time?.is_enabled) return;
+    if (!appSettings?.special_lock_times?.is_enabled) return;
 
     const { data, error } = await supabase
       .from('profiles')
@@ -85,7 +85,7 @@ const PredictPage = () => {
 
   const getLockTime = (gameTime) => {
     const defaultLockMinutes = 15;
-    if (!appSettings?.special_lock_time?.is_enabled || !userRank || userRank > 3) {
+    if (!appSettings?.special_lock_times?.is_enabled || !userRank || userRank > 3) {
       return new Date(gameTime.getTime() - defaultLockMinutes * 60 * 1000);
     }
 
