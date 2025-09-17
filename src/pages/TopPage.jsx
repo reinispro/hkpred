@@ -113,19 +113,19 @@ const TopPage = () => {
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-3 text-xs text-white/70">
-                          <div className="flex items-center gap-1" title="Precise Draw (12pts)">
+                          <div className="flex items-center gap-1" title="Precīzs neizšķirts (12p)">
                             <Star className="h-3 w-3 text-cyan-400" />
                             <span>{player.precise_draw_bonus || 0}</span>
                           </div>
-                          <div className="flex items-center gap-1" title="Precise Score (10pts)">
+                          <div className="flex items-center gap-1" title="Precīzs rezultāts (10p)">
                             <Target className="h-3 w-3 text-green-400" />
                             <span>{player.precise_score_bonus || 0}</span>
                           </div>
-                          <div className="flex items-center gap-1" title="Goal Diff. / Draw (6pts)">
+                          <div className="flex items-center gap-1" title="Punktu starpība/neizšķirts (6p)">
                             <ChevronsRight className="h-3 w-3 text-yellow-400" />
                             <span>{player.goal_difference_bonus || 0}</span>
                           </div>
-                          <div className="flex items-center gap-1" title="Correct Winner (4pts)">
+                          <div className="flex items-center gap-1" title="Pareizs uzvarētājs (4p)">
                             <CheckCircle2 className="h-3 w-3 text-fuchsia-400" />
                             <span>{player.correct_winner_bonus || 0}</span>
                           </div>
