@@ -374,6 +374,107 @@ const AdminPage = () => {
     }
   };
 
+  const openEditDialog = (game) => {
+    const localDateTime = new Date(
+      new Date(game.game_time).getTime() -
+      new Date().getTimezoneOffset() * 60000
+    )
+      .toISOString()
+      .slice(0, 16);
+
+    setEditingGame({ ...game, game_time: localDateTime });
+    setIsEditDialogOpen(true);
+  };
+
+  const handleDeleteGame = async (gameId) => {
+    const { error } = await supabase.from('games').delete().eq('id', gameId);
+
+    if (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Error deleting game',
+        description: error.message,
+      });
+    } else {
+      toast({
+        title: 'Success',
+        description: 'Game deleted.',
+      });
+      fetchGames();
+    }
+  };
+
+  const handleResultChange = (gameId, team, value) => {
+    setGames((prevGames) =>
+      prevGames.map((g) =>
+        g.id === gameId ? { ...g, [team]: value } : g
+      )
+    );
+  };
+
+  const handleSaveResult = async (gameId) => {
+    const game = games.find((g) => g.id === gameId);
+
+    if (
+      game.result_a === null ||
+      game.result_b === null ||
+      game.result_a === '' ||
+      game.result_b === ''
+    ) {
+      toast({
+        variant: 'destructive',
+        title: 'Missing score',
+        description: 'Please enter scores for both teams.',
+      });
+      return;
+    }
+
+    const { error } = await supabase
+      .from('games')
+      .update({
+        result_a: game.result_a,
+        result_b: game.result_b,
+        status: 'finished',
+      })
+      .eq('id', gameId);
+
+    if (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Error saving result',
+        description: error.message,
+      });
+    } else {
+      toast({
+        title: 'Success',
+        description: 'Game result saved. Triggering point calculation...',
+      });
+
+      // invoke edge function
+      const { error: functionError } = await supabase.functions.invoke(
+        'calculate-points',
+        { body: { game_id: gameId } }
+      );
+
+      if (functionError) {
+        toast({
+          variant: 'destructive',
+          title: 'Error calculating points',
+          description: functionError.message,
+        });
+      } else {
+        toast({
+          title: 'Success',
+          description: 'Points calculation complete.',
+        });
+      }
+
+      fetchGames();
+      fetchUsers();
+    }
+  };
+  
+
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
