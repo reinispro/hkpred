@@ -37,7 +37,7 @@
         setIsLoggingIn(true);
         const { error } = await signInWithPassword({ email: loginEmail, password: loginPassword });
         if (error) {
-          toast({ variant: 'destructive', title: 'Login Failed', description: error.message });
+          toast({ variant: 'destructive', title: 'Autorizācija neizdevās', description: error.message });
         }
         setIsLoggingIn(false);
       };
@@ -52,9 +52,9 @@
             fullName: registerName,
         });
         if (error) {
-          toast({ variant: 'destructive', title: 'Registration Failed', description: error.message });
+          toast({ variant: 'destructive', title: 'Reģistrācija neizdevās', description: error.message });
         } else {
-          toast({ title: 'Registration Successful!', description: "Please wait for an admin to approve your account." });
+          toast({ title: 'Reģistrācija veiksmīga!', description: "Uzgaidi kamēr administrators tevi apstiprinās." });
         }
         setIsRegistering(false);
       };
@@ -62,8 +62,8 @@
       return (
         <>
           <Helmet>
-            <title>Autrizācija</title>
-            <meta name="description" content="Login or register to join the game." />
+            <title>Autorizācija</title>
+            <meta name="description" content="Autorizējies vai Reģistrējies, lai piekļūtu lapai." />
           </Helmet>
           <div className="flex items-center justify-center min-h-screen p-4">
             <motion.div
@@ -73,15 +73,15 @@
             >
               <Tabs defaultValue="login" className="w-[400px]">
                 <TabsList className="grid w-full grid-cols-2 bg-white/20">
-                  <TabsTrigger value="login" className="data-[state=active]:bg-white/30 data-[state=active]:text-white text-white/80">Login</TabsTrigger>
-                  <TabsTrigger value="register" className="data-[state=active]:bg-white/30 data-[state=active]:text-white text-white/80">Register</TabsTrigger>
+                  <TabsTrigger value="login" className="data-[state=active]:bg-white/30 data-[state=active]:text-white text-white/80">Autorizācija</TabsTrigger>
+                  <TabsTrigger value="register" className="data-[state=active]:bg-white/30 data-[state=active]:text-white text-white/80">Reģistrācija</TabsTrigger>
                 </TabsList>
                 <TabsContent value="login">
                   <Card className="glass-card text-white border-none">
                     <CardHeader>
                       <CardTitle className="text-2xl">Sveicināts!</CardTitle>
                       <CardDescription className="text-white/70">
-                        Ievadi savus piekļuves datur, lai piekļūtu lapai.
+                        Ievadi savus piekļuves datus, lai piekļūtu lapai.
                       </CardDescription>
                     </CardHeader>
                     <form onSubmit={handleLogin}>
@@ -115,11 +115,11 @@
                       <CardContent className="space-y-4">
                         <div className="space-y-2">
                           <Label htmlFor="name-register">Vārds</Label>
-                          <Input id="name-register" placeholder="Your Full Name" className="bg-white/20 border-white/30 placeholder:text-white/50" value={registerName} onChange={(e) => setRegisterName(e.target.value)} required />
+                          <Input id="name-register" placeholder="Tavs vārds" className="bg-white/20 border-white/30 placeholder:text-white/50" value={registerName} onChange={(e) => setRegisterName(e.target.value)} required />
                         </div>
                          <div className="space-y-2">
                           <Label htmlFor="username-register">Lietotājvārds</Label>
-                          <Input id="username-register" placeholder="Your Username" className="bg-white/20 border-white/30 placeholder:text-white/50" value={registerUsername} onChange={(e) => setRegisterUsername(e.target.value)} required />
+                          <Input id="username-register" placeholder="Tavs lietotājvārds" className="bg-white/20 border-white/30 placeholder:text-white/50" value={registerUsername} onChange={(e) => setRegisterUsername(e.target.value)} required />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="email-register">E-Pasts</Label>
