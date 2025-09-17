@@ -45,7 +45,7 @@
             </div>
             <Button onClick={signOut} variant="ghost" className="text-white hover:bg-red-500/50">
               <LogOut className="mr-2 h-4 w-4" />
-              Logout
+              Iziet
             </Button>
           </nav>
         </header>
