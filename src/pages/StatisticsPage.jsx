@@ -23,61 +23,58 @@ const StatisticsPage = () => {
       setLoading(true);
 
       try {
-        // Kopējais prognožu skaits
-        const { count: totalPredictions, error: predError } = await supabase
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('points, precise_draw_bonus, precise_score_bonus, goal_difference_bonus, correct_winner_bonus')
+          .eq('id', user.id)
+          .single();
+        if (profileError) throw profileError;
+
+        const { count: totalPredictions } = await supabase
           .from('predictions')
           .select('*', { count: 'exact', head: true })
           .eq('user_id', user.id);
-        if (predError) throw predError;
 
-        // Pareizo prognožu skaits
-        const { count: correctPredictions, error: correctPredError } = await supabase
+        const { count: correctPredictions } = await supabase
           .from('predictions')
           .select('*', { count: 'exact', head: true })
           .eq('user_id', user.id)
           .gt('points_awarded', 0);
-        if (correctPredError) throw correctPredError;
 
-        // Bez rezultāta prognozes
-        const { count: noScore, error: noScoreError } = await supabase
+        const { count: noScore } = await supabase
           .from('predictions')
           .select('*', { count: 'exact', head: true })
           .eq('user_id', user.id)
           .eq('points_awarded', 0);
-        if (noScoreError) throw noScoreError;
 
-        // Kopējais lietotāju skaits
-        const { count: totalUsers, error: usersError } = await supabase
+        const { count: totalUsers } = await supabase
           .from('profiles')
           .select('*', { count: 'exact', head: true });
-        if (usersError) throw usersError;
 
-        // Lietotāja vieta rangā
-        const { data: rankData, error: rankError } = await supabase
+        const { data: rankData } = await supabase
           .from('profiles')
           .select('id')
-          .gt('points', user.points);
-        if (rankError) throw rankError;
+          .gt('points', profile.points);
+
         const rank = (rankData?.length || 0) + 1;
 
-        // Win rate
         const winRate =
           totalPredictions > 0
             ? parseFloat(((correctPredictions / totalPredictions) * 100).toFixed(1))
             : 0;
 
         setStats({
-          totalPoints: user.points,
+          totalPoints: profile.points,
           totalPredictions,
           correctPredictions,
           winRate,
           rank,
           totalUsers,
           tiebreakers: {
-            preciseDraws: user.precise_draw_bonus,
-            preciseScores: user.precise_score_bonus,
-            goalDifference: user.goal_difference_bonus,
-            correctWinner: user.correct_winner_bonus,
+            preciseDraws: profile.precise_draw_bonus,
+            preciseScores: profile.precise_score_bonus,
+            goalDifference: profile.goal_difference_bonus,
+            correctWinner: profile.correct_winner_bonus,
             noScore,
           },
         });
@@ -94,7 +91,6 @@ const StatisticsPage = () => {
 
     fetchStats();
 
-    // 👇 Realtime listener uz profiles
     const profilesChannel = supabase
       .channel('profiles-stats-channel')
       .on(
@@ -102,7 +98,6 @@ const StatisticsPage = () => {
         { event: '*', schema: 'public', table: 'profiles' },
         (payload) => {
           if (payload.new?.id === user?.id) {
-            console.log('Realtime profile update:', payload);
             fetchStats();
           }
         }
