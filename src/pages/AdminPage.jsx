@@ -374,6 +374,50 @@ const AdminPage = () => {
     }
   };
 
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      const csv = event.target.result;
+      const lines = csv.split('\n').slice(1);
+
+      const gamesToAdd = lines.map(line => {
+        const [team_a, team_b, game_time, league] = line.split(',');
+        if (team_a && team_b && game_time) {
+          return {
+            team_a: team_a.trim(),
+            team_b: team_b.trim(),
+            game_time: game_time.trim(),
+            league: league ? league.trim() : 'Pamata turnīrs',
+            status: 'scheduled',
+          };
+        }
+        return null;
+      }).filter(Boolean);
+
+      if (gamesToAdd.length > 0) {
+        const { error } = await supabase.from('games').insert(gamesToAdd);
+        if (error) {
+          toast({
+            variant: 'destructive',
+            title: 'Error uploading games',
+            description: error.message,
+          });
+        } else {
+          toast({
+            title: 'Success',
+            description: `${gamesToAdd.length} games added from CSV.`,
+          });
+          fetchGames();
+        }
+      }
+    };
+
+    reader.readAsText(file);
+  };
+
 
   // -------------------------
   // Jaunās spēles formas helperi
