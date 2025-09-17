@@ -28,32 +28,28 @@ const StatisticsPage = () => {
           .from('predictions')
           .select('*', { count: 'exact', head: true })
           .eq('user_id', user.id);
-
         if (predError) throw predError;
 
-        // Pareizo prognožu skaits (punkti > 0)
+        // Pareizo prognožu skaits
         const { count: correctPredictions, error: correctPredError } = await supabase
           .from('predictions')
           .select('*', { count: 'exact', head: true })
           .eq('user_id', user.id)
           .gt('points_awarded', 0);
-
         if (correctPredError) throw correctPredError;
 
-        // Bez rezultāta prognozes (punkti = 0)
+        // Bez rezultāta prognozes
         const { count: noScore, error: noScoreError } = await supabase
           .from('predictions')
           .select('*', { count: 'exact', head: true })
           .eq('user_id', user.id)
           .eq('points_awarded', 0);
-
         if (noScoreError) throw noScoreError;
 
         // Kopējais lietotāju skaits
         const { count: totalUsers, error: usersError } = await supabase
           .from('profiles')
           .select('*', { count: 'exact', head: true });
-
         if (usersError) throw usersError;
 
         // Lietotāja vieta rangā
@@ -61,18 +57,15 @@ const StatisticsPage = () => {
           .from('profiles')
           .select('id')
           .gt('points', user.points);
-
         if (rankError) throw rankError;
-
         const rank = (rankData?.length || 0) + 1;
 
-        // Win rate %
+        // Win rate
         const winRate =
           totalPredictions > 0
             ? parseFloat(((correctPredictions / totalPredictions) * 100).toFixed(1))
             : 0;
 
-        // Saglabā statistiku state
         setStats({
           totalPoints: user.points,
           totalPredictions,
@@ -85,7 +78,7 @@ const StatisticsPage = () => {
             preciseScores: user.precise_score_bonus,
             goalDifference: user.goal_difference_bonus,
             correctWinner: user.correct_winner_bonus,
-            noScore, // ← JAUNAIS
+            noScore,
           },
         });
       } catch (error) {
@@ -100,6 +93,25 @@ const StatisticsPage = () => {
     };
 
     fetchStats();
+
+    // 👇 Realtime listener uz profiles
+    const profilesChannel = supabase
+      .channel('profiles-stats-channel')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'profiles' },
+        (payload) => {
+          if (payload.new?.id === user?.id) {
+            console.log('Realtime profile update:', payload);
+            fetchStats();
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(profilesChannel).catch(console.error);
+    };
   }, [user, toast, userLoading]);
 
   const CustomTooltip = ({ active, payload }) => {
@@ -128,22 +140,17 @@ const StatisticsPage = () => {
     { subject: 'Precīzs rezultāts', count: stats.tiebreakers.preciseScores || 0 },
     { subject: 'Vārtu starpība', count: stats.tiebreakers.goalDifference || 0 },
     { subject: 'Pareizs uzvarētājs', count: stats.tiebreakers.correctWinner || 0 },
-    { subject: 'Bez rezultāta', count: stats.tiebreakers.noScore || 0 }, // ← JAUNAIS
+    { subject: 'Bez rezultāta', count: stats.tiebreakers.noScore || 0 },
   ];
 
   return (
     <>
       <Helmet>
         <title>Statistics - Prediction Game</title>
-        <meta
-          name="description"
-          content="View your personal prediction statistics and performance."
-        />
+        <meta name="description" content="View your personal prediction statistics and performance." />
       </Helmet>
       <div className="space-y-6">
-        <h1 className="text-4xl font-bold text-white tracking-tight">
-          Your Statistics
-        </h1>
+        <h1 className="text-4xl font-bold text-white tracking-tight">Your Statistics</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <Card className="glass-card text-white">
             <CardHeader>
@@ -165,9 +172,7 @@ const StatisticsPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="text-4xl font-bold text-center text-blue-300">
-                {stats.winRate}%
-              </div>
+              <div className="text-4xl font-bold text-center text-blue-300">{stats.winRate}%</div>
               <Progress
                 value={stats.winRate}
                 className="w-full h-2 bg-white/20 [&>div]:bg-gradient-to-r [&>div]:from-cyan-400 [&>div]:to-blue-500"
@@ -203,32 +208,12 @@ const StatisticsPage = () => {
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
-                <RadarChart
-                  cx="50%"
-                  cy="50%"
-                  outerRadius="80%"
-                  data={performanceData}
-                >
+                <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performanceData}>
                   <PolarGrid stroke="rgba(255, 255, 255, 0.2)" />
-                  <PolarAngleAxis
-                    dataKey="subject"
-                    stroke="#FFFFFF"
-                    tick={{ fill: 'white', fontSize: 14 }}
-                  />
-                  <PolarRadiusAxis
-                    angle={30}
-                    stroke="rgba(255, 255, 255, 0)"
-                    tick={false}
-                    axisLine={false}
-                  />
+                  <PolarAngleAxis dataKey="subject" stroke="#FFFFFF" tick={{ fill: 'white', fontSize: 14 }} />
+                  <PolarRadiusAxis angle={30} stroke="rgba(255, 255, 255, 0)" tick={false} axisLine={false} />
                   <Tooltip content={<CustomTooltip />} />
-                  <Radar
-                    name="Count"
-                    dataKey="count"
-                    stroke="#22d3ee"
-                    fill="#22d3ee"
-                    fillOpacity={0.4}
-                  />
+                  <Radar name="Count" dataKey="count" stroke="#22d3ee" fill="#22d3ee" fillOpacity={0.4} />
                 </RadarChart>
               </ResponsiveContainer>
             </CardContent>

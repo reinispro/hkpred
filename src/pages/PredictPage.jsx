@@ -77,11 +77,31 @@ const PredictPage = () => {
   }, [appSettings, user]);
 
   useEffect(() => {
-    if (user && appSettings) {
-      fetchGamesAndPredictions();
-      fetchTopPlayers();
-    }
+    if (!user) return;
+
+    // sākumā paņemam spēles un prognozes
+    fetchGamesAndPredictions();
+    fetchTopPlayers();
+
+    // klausāmies uz izmaiņām games tabulā
+    const gamesChannel = supabase
+      .channel('predictpage-games-channel')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'games' },
+        (payload) => {
+          console.log("Realtime update:", payload);
+          // Pārņemam jaunākos datus
+          fetchGamesAndPredictions();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(gamesChannel).catch(console.error);
+    };
   }, [user, appSettings, fetchGamesAndPredictions, fetchTopPlayers]);
+
 
   const getLockTime = (gameTime) => {
     const defaultLockMinutes = 15;
