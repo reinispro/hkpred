@@ -342,6 +342,39 @@ const AdminPage = () => {
     }
   };
 
+  const handleAddGame = async (e) => {
+    e.preventDefault();
+    if (!newGame.team_a || !newGame.team_b || !newGame.game_time) {
+      toast({
+        variant: 'destructive',
+        title: 'Missing fields',
+        description: 'Please fill out all game details.',
+      });
+      return;
+    }
+
+    const { error } = await supabase.from('games').insert([{
+      ...newGame,
+      status: 'scheduled',
+    }]);
+
+    if (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Error adding game',
+        description: error.message,
+      });
+    } else {
+      toast({
+        title: 'Success',
+        description: 'New game added.',
+      });
+      setNewGame({ team_a: '', team_b: '', game_time: '', league: 'Pamata turnīrs' });
+      fetchGames();
+    }
+  };
+
+
   // -------------------------
   // Jaunās spēles formas helperi
   // (Games tab nāks 3. daļā)
