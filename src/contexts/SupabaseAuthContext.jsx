@@ -137,7 +137,7 @@ export const SupabaseAuthProvider = ({ children }) => {
         options: {
           data: {
             username: credentials.username,
-            full_name: credentials.fullName,
+            full_name: credentials.fullname,
           },
         },
       });

@@ -49,7 +49,7 @@
             email: registerEmail, 
             password: registerPassword, 
             username: registerUsername,
-            fullName: registerName,
+            fullname: registerName,
         });
         if (error) {
           toast({ variant: 'destructive', title: 'Reģistrācija neizdevās', description: error.message });
