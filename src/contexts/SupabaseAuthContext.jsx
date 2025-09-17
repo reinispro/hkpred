@@ -130,37 +130,17 @@ export const SupabaseAuthProvider = ({ children }) => {
     signInWithPassword: (credentials) => supabase.auth.signInWithPassword(credentials),
     signOut: () => supabase.auth.signOut(),
     signUp: async (credentials) => {
-      // 1. Reģistrē lietotāju Supabase Auth
+      // Tikai Auth → pārējo izdara triggeris
       const { data, error } = await supabase.auth.signUp({
         email: credentials.email,
         password: credentials.password,
-      });
-
-      if (error) return { data, error };
-
-      // 2. Ja Auth izdevās, pievieno lietotāju `profiles` tabulā
-      if (data.user) {
-        const { error: profileError } = await supabase.from("profiles").insert([
-          {
-            id: data.user.id,          // sasaistām ar auth user
-            email: credentials.email,
+        options: {
+          data: {
             username: credentials.username,
             full_name: credentials.fullName,
-            approved: false,           // default
-            role: "user",              // default
-            points: 0,                 // sākumā 0
-            precise_draw_bonus: 0,
-            precise_score_bonus: 0,
-            goal_difference_bonus: 0,
-            correct_winner_bonus: 0,
           },
-        ]);
-
-        if (profileError) {
-          console.error("Profile insert error:", profileError.message);
-          return { data, error: profileError };
-        }
-      }
+        },
+      });
 
       return { data, error };
     },
@@ -174,7 +154,7 @@ export const SupabaseAuthProvider = ({ children }) => {
     return (
       <div className="min-h-screen w-full bg-gradient-to-br from-cyan-300 via-blue-500 to-indigo-600 flex flex-col items-center justify-center text-white p-4">
         <div className="text-center glass-card p-8 rounded-xl shadow-2xl max-w-md">
-          <h1 className="text-4xl font-bold mb-4">Lietotājs gaida administratora apstirpinājumu</h1>
+          <h1 className="text-4xl font-bold mb-4">Lietotājs gaida administratora apstiprinājumu</h1>
           <p className="text-lg mb-6">
             Paldies, ka reģistrējies! Tavu lietotājkontu administrators nav apstiprinājis. Pārbaudi vēlāk.
           </p>
