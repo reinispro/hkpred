@@ -13,7 +13,7 @@ export const SupabaseAuthProvider = ({ children }) => {
   const [appSettings, setAppSettings] = useState(null);
   const { toast } = useToast();
 
-  // 🔹 Ielādē lietotāja profilu
+  // 🔹 Ielādē lietotāja profilu no `profiles`
   const fetchUserSettings = useCallback(
     async (userId) => {
       if (userId) {
@@ -121,6 +121,7 @@ export const SupabaseAuthProvider = ({ children }) => {
     };
   }, [fetchUserSettings, fetchAppSettings, user?.id]);
 
+  // 🔹 Galvenā loģika
   const value = {
     session,
     user,
@@ -129,16 +130,38 @@ export const SupabaseAuthProvider = ({ children }) => {
     signInWithPassword: (credentials) => supabase.auth.signInWithPassword(credentials),
     signOut: () => supabase.auth.signOut(),
     signUp: async (credentials) => {
+      // 1. Reģistrē lietotāju Supabase Auth
       const { data, error } = await supabase.auth.signUp({
         email: credentials.email,
         password: credentials.password,
-        options: {
-          data: {
+      });
+
+      if (error) return { data, error };
+
+      // 2. Ja Auth izdevās, pievieno lietotāju `profiles` tabulā
+      if (data.user) {
+        const { error: profileError } = await supabase.from("profiles").insert([
+          {
+            id: data.user.id,          // sasaistām ar auth user
+            email: credentials.email,
             username: credentials.username,
             full_name: credentials.fullName,
+            approved: false,           // default
+            role: "user",              // default
+            points: 0,                 // sākumā 0
+            precise_draw_bonus: 0,
+            precise_score_bonus: 0,
+            goal_difference_bonus: 0,
+            correct_winner_bonus: 0,
           },
-        },
-      });
+        ]);
+
+        if (profileError) {
+          console.error("Profile insert error:", profileError.message);
+          return { data, error: profileError };
+        }
+      }
+
       return { data, error };
     },
   };
