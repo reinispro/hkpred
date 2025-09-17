@@ -174,11 +174,11 @@ export const SupabaseAuthProvider = ({ children }) => {
     return (
       <div className="min-h-screen w-full bg-gradient-to-br from-cyan-300 via-blue-500 to-indigo-600 flex flex-col items-center justify-center text-white p-4">
         <div className="text-center glass-card p-8 rounded-xl shadow-2xl max-w-md">
-          <h1 className="text-4xl font-bold mb-4">Account Pending Approval</h1>
+          <h1 className="text-4xl font-bold mb-4">Lietotājs gaida administratora apstirpinājumu</h1>
           <p className="text-lg mb-6">
-            Thank you for registering! Your account is currently waiting for an administrator to approve it. Please check back later.
+            Paldies, ka reģistrējies! Tavu lietotājkontu administrators nav apstiprinājis. Pārbaudi vēlāk.
           </p>
-          <Button onClick={() => value.signOut()}>Log Out</Button>
+          <Button onClick={() => value.signOut()}>Izrakstīties</Button>
         </div>
       </div>
     );
