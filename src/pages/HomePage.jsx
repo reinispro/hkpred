@@ -40,7 +40,7 @@ import React, { useState, useEffect } from 'react';
       return (
         <>
           <Helmet>
-            <title>Home - Prediction Game</title>
+            <title>Sākums</title>
             <meta name="description" content="View upcoming games and prepare for predictions." />
           </Helmet>
           <div className="space-y-6">
@@ -86,7 +86,7 @@ import React, { useState, useEffect } from 'react';
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-white/80">Pagaidām nav speļu, gaidi, kad tās tiks pievienotas.</p>
+                  <p className="text-white/80">Pagaidām nav spēļu, gaidi, kad tās tiks pievienotas.</p>
                 </CardContent>
               </Card>
             )}

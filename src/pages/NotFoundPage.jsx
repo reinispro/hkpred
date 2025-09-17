@@ -10,7 +10,7 @@
       return (
         <>
           <Helmet>
-            <title>404 - Page Not Found</title>
+            <title>404 - Tāda Lapa Neeskistē</title>
           </Helmet>
           <div className="flex flex-col items-center justify-center min-h-screen text-center text-white p-4">
             <motion.div
@@ -21,10 +21,10 @@
             >
               <AlertTriangle className="mx-auto h-24 w-24 text-yellow-300" />
               <h1 className="mt-8 text-6xl md:text-8xl font-black tracking-tighter">404</h1>
-              <p className="mt-4 text-xl md:text-2xl font-light">Oops! Page not found.</p>
-              <p className="mt-2 text-white/70 max-w-md">The page you are looking for might have been moved or doesn't exist.</p>
+              <p className="mt-4 text-xl md:text-2xl font-light">Oops! Lapa nav atrasta.</p>
+              <p className="mt-2 text-white/70 max-w-md">Lapa ko meklē ir izdzēsta vai pārvietota.</p>
               <Button asChild className="mt-8 bg-cyan-400 hover:bg-cyan-500 text-slate-900 font-bold">
-                <Link to="/">Go Back Home</Link>
+                <Link to="/">Atgriezties Sākumā</Link>
               </Button>
             </motion.div>
           </div>

@@ -62,7 +62,7 @@
       return (
         <>
           <Helmet>
-            <title>Login / Register - Prediction Game</title>
+            <title>Autrizācija</title>
             <meta name="description" content="Login or register to join the game." />
           </Helmet>
           <div className="flex items-center justify-center min-h-screen p-4">
@@ -79,25 +79,25 @@
                 <TabsContent value="login">
                   <Card className="glass-card text-white border-none">
                     <CardHeader>
-                      <CardTitle className="text-2xl">Welcome Back!</CardTitle>
+                      <CardTitle className="text-2xl">Sveicināts!</CardTitle>
                       <CardDescription className="text-white/70">
-                        Enter your credentials to access your account.
+                        Ievadi savus piekļuves datur, lai piekļūtu lapai.
                       </CardDescription>
                     </CardHeader>
                     <form onSubmit={handleLogin}>
                       <CardContent className="space-y-4">
                         <div className="space-y-2">
-                          <Label htmlFor="email-login">Email</Label>
+                          <Label htmlFor="email-login">E-Pasts</Label>
                           <Input id="email-login" type="email" placeholder="m@example.com" className="bg-white/20 border-white/30 placeholder:text-white/50" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="password-login">Password</Label>
+                          <Label htmlFor="password-login">Parole</Label>
                           <Input id="password-login" type="password" className="bg-white/20 border-white/30 placeholder:text-white/50" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required />
                         </div>
                       </CardContent>
                       <CardFooter>
                         <Button type="submit" className="w-full bg-cyan-400 hover:bg-cyan-500 text-slate-900 font-bold" disabled={isLoggingIn}>
-                          {isLoggingIn ? 'Signing In...' : 'Sign In'}
+                          {isLoggingIn ? 'Signing In...' : 'Autorizēties'}
                         </Button>
                       </CardFooter>
                     </form>
@@ -106,33 +106,33 @@
                 <TabsContent value="register">
                   <Card className="glass-card text-white border-none">
                     <CardHeader>
-                      <CardTitle className="text-2xl">Create an Account</CardTitle>
+                      <CardTitle className="text-2xl">Izveidot Lietotāju</CardTitle>
                       <CardDescription className="text-white/70">
-                        Enter your details to register. Your account will require admin approval.
+                        Ievadi savu informāciju, lai reģistrētos. Tev būs nepieciešams administratora apstiprinājums, lai autorizētos.
                       </CardDescription>
                     </CardHeader>
                     <form onSubmit={handleRegister}>
                       <CardContent className="space-y-4">
                         <div className="space-y-2">
-                          <Label htmlFor="name-register">Full Name</Label>
+                          <Label htmlFor="name-register">Vārds</Label>
                           <Input id="name-register" placeholder="Your Full Name" className="bg-white/20 border-white/30 placeholder:text-white/50" value={registerName} onChange={(e) => setRegisterName(e.target.value)} required />
                         </div>
                          <div className="space-y-2">
-                          <Label htmlFor="username-register">Username</Label>
+                          <Label htmlFor="username-register">Lietotājvārds</Label>
                           <Input id="username-register" placeholder="Your Username" className="bg-white/20 border-white/30 placeholder:text-white/50" value={registerUsername} onChange={(e) => setRegisterUsername(e.target.value)} required />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="email-register">Email</Label>
+                          <Label htmlFor="email-register">E-Pasts</Label>
                           <Input id="email-register" type="email" placeholder="m@example.com" className="bg-white/20 border-white/30 placeholder:text-white/50" value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)} required />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="password-register">Password</Label>
+                          <Label htmlFor="password-register">Parole</Label>
                           <Input id="password-register" type="password" className="bg-white/20 border-white/30 placeholder:text-white/50" value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} required />
                         </div>
                       </CardContent>
                       <CardFooter>
                         <Button type="submit" className="w-full bg-cyan-400 hover:bg-cyan-500 text-slate-900 font-bold" disabled={isRegistering}>
-                          {isRegistering ? 'Registering...' : 'Register'}
+                          {isRegistering ? 'Registering...' : 'Reģistrēties'}
                         </Button>
                       </CardFooter>
                     </form>

@@ -123,11 +123,11 @@ const StatisticsPage = () => {
   };
 
   if (loading || userLoading) {
-    return <div className="text-white text-center p-8">Loading statistics...</div>;
+    return <div className="text-white text-center p-8">Ielādē statistiku...</div>;
   }
 
   if (!stats) {
-    return <div className="text-white text-center p-8">No statistics available yet. Make some predictions!</div>;
+    return <div className="text-white text-center p-8">Pagaidām statistika nav pieejama. Ievadi kādas prognozes!</div>;
   }
 
   const performanceData = [
@@ -141,17 +141,17 @@ const StatisticsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Statistics - Prediction Game</title>
+        <title>Statistika</title>
         <meta name="description" content="View your personal prediction statistics and performance." />
       </Helmet>
       <div className="space-y-6">
-        <h1 className="text-4xl font-bold text-white tracking-tight">Your Statistics</h1>
+        <h1 className="text-4xl font-bold text-white tracking-tight">Tava Statistika</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <Card className="glass-card text-white">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Trophy className="h-6 w-6 text-yellow-300" />
-                <span>Total Points</span>
+                <span>Kopējie Punkti</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="text-4xl font-bold text-center text-cyan-300">
@@ -163,7 +163,7 @@ const StatisticsPage = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <BarChart className="h-6 w-6 text-blue-300" />
-                <span>Win Rate</span>
+                <span>Uzvaras %</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -173,7 +173,7 @@ const StatisticsPage = () => {
                 className="w-full h-2 bg-white/20 [&>div]:bg-gradient-to-r [&>div]:from-cyan-400 [&>div]:to-blue-500"
               />
               <p className="text-sm text-white/80">
-                {stats.correctPredictions} out of {stats.totalPredictions} predictions correct.
+                {stats.correctPredictions} no {stats.totalPredictions} prognozēm ir pareizas.
               </p>
             </CardContent>
           </Card>
@@ -182,12 +182,12 @@ const StatisticsPage = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Trophy className="h-6 w-6 text-green-300" />
-                <span>Current Rank</span>
+                <span>Vieta Topā</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-center">
               <p className="text-5xl font-black text-green-300">{stats.rank}</p>
-              <p className="text-white/80">out of {stats.totalUsers} players</p>
+              <p className="text-white/80">no {stats.totalUsers} dalībniekiem</p>
             </CardContent>
           </Card>
 
@@ -195,10 +195,10 @@ const StatisticsPage = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Users className="h-6 w-6 text-fuchsia-300" />
-                <span>Your Performance Profile</span>
+                <span>Punktu Sadalījums</span>
               </CardTitle>
               <CardDescription className="text-white/70">
-                A breakdown of your prediction accuracy by type.
+                Punktu sadalījums starp punktu veidiem.
               </CardDescription>
             </CardHeader>
             <CardContent>

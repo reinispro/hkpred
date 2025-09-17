@@ -66,15 +66,15 @@ const TopPage = () => {
   return (
     <>
       <Helmet>
-        <title>Leaderboard - Prediction Game</title>
+        <title>Tops</title>
         <meta name="description" content="See who the top prediction players are." />
       </Helmet>
       <div className="space-y-6">
-        <h1 className="text-4xl font-bold text-white tracking-tight">Leaderboard</h1>
+        <h1 className="text-4xl font-bold text-white tracking-tight">Tops</h1>
         {loading ? (
           <Card className="glass-card text-white">
             <CardContent>
-              <p className="text-center p-8">Loading leaderboard...</p>
+              <p className="text-center p-8">Ielādē Topu...</p>
             </CardContent>
           </Card>
         ) : leaderboard.length > 0 ? (
@@ -82,18 +82,18 @@ const TopPage = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Trophy />
-                <span>Top Players</span>
+                <span>Top Dalībnieki</span>
               </CardTitle>
-              <CardDescription className="text-white/70">Who stands at the top of the prediction game?</CardDescription>
+              <CardDescription className="text-white/70">Kurš ir labākais prognožu spēlē?</CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="text-white/80">Rank</TableHead>
-                    <TableHead className="text-white/80">Player</TableHead>
-                    <TableHead className="text-white/80">Tie-Breakers</TableHead>
-                    <TableHead className="text-white/80 text-right">Points</TableHead>
+                    <TableHead className="text-white/80">Vieta Topā</TableHead>
+                    <TableHead className="text-white/80">Dalībnieks</TableHead>
+                    <TableHead className="text-white/80">Punktu sadalījums (svarīgums)</TableHead>
+                    <TableHead className="text-white/80 text-right">Punkti</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -145,12 +145,12 @@ const TopPage = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Trophy />
-                <span>No Top Players Yet</span>
+                <span>Pagaidām Topā nav dalībnieku</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-white/80">
-                The leaderboard will be shown here after the first games are completed.
+                Tops tiks parādīts, kad noslēgsies pirmā spēle.
               </p>
             </CardContent>
           </Card>

@@ -41,7 +41,7 @@ const OtherPredictionsDialog = ({ gameId, gameName }) => {
     <Dialog onOpenChange={(open) => open && fetchPredictions()}>
       <DialogTrigger asChild>
         <Button variant="ghost" size="sm" className="text-cyan-300 hover:text-cyan-400 hover:bg-white/10">
-          <Users className="mr-2 h-4 w-4" /> View All
+          <Users className="mr-2 h-4 w-4" /> Apskatīt
         </Button>
       </DialogTrigger>
       <DialogContent className="glass-card text-white border-white/20 max-w-md">
@@ -52,7 +52,7 @@ const OtherPredictionsDialog = ({ gameId, gameName }) => {
           </DialogDescription>
         </DialogHeader>
         <div className="max-h-[60vh] overflow-y-auto">
-          {loading ? <p>Loading...</p> : predictions.length > 0 ? (
+          {loading ? <p>Ielādē...</p> : predictions.length > 0 ? (
             <Table>
               <TableHeader>
                 <TableRow className="border-white/20 hover:bg-white/10">
@@ -78,7 +78,7 @@ const OtherPredictionsDialog = ({ gameId, gameName }) => {
                 ))}
               </TableBody>
             </Table>
-          ) : <p className="text-white/70 text-center py-4">No predictions were made for this game.</p>}
+          ) : <p className="text-white/70 text-center py-4">Uz šo spēli netika veiktas prognozes.</p>}
         </div>
       </DialogContent>
     </Dialog>
@@ -187,7 +187,7 @@ const GamesPage = () => {
   return (
     <>
       <Helmet>
-        <title>Game History - Prediction Game</title>
+        <title>Spēles</title>
         <meta
           name="description"
           content="View past game results and prediction outcomes."
@@ -198,7 +198,7 @@ const GamesPage = () => {
         {loading ? (
           <Card className="glass-card text-white">
             <CardContent>
-              <p className="text-center p-8">Loading game history...</p>
+              <p className="text-center p-8">Ielādē spēļu vēsturi...</p>
             </CardContent>
           </Card>
         ) : games.length > 0 ? (
@@ -268,7 +268,7 @@ const GamesPage = () => {
                               gameName={`${game.team_a} vs ${game.team_b}`}
                             />
                           ) : (
-                            <span className="text-white/70 text-xs">Awaiting game start</span>
+                            <span className="text-white/70 text-xs">Tiek gaidīts spēles sākums</span>
                           )}
                         </TableCell>
                       </TableRow>
@@ -283,12 +283,12 @@ const GamesPage = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <ListOrdered />
-                <span>No Games Found</span>
+                <span>Neviena spēle nav atrasta</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-white/80">
-                No games have been completed or are currently live.
+                Nav spēļu, kas būtu noslēgušās vai notiktu šobrīd.
               </p>
             </CardContent>
           </Card>
