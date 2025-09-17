@@ -404,6 +404,37 @@ const AdminPage = () => {
     }
   };
 
+const handleUpdateGame = async (e) => {
+  e.preventDefault();
+  if (!editingGame) return;
+
+  const { id, team_a, team_b, game_time, league } = editingGame;
+
+  const { error } = await supabase
+    .from("games")
+    .update({
+      team_a,
+      team_b,
+      game_time: new Date(game_time).toISOString(),
+      league,
+    })
+    .eq("id", id);
+
+  if (error) {
+    toast({
+      variant: "destructive",
+      title: "Error updating game",
+      description: error.message,
+    });
+  } else {
+    toast({ title: "Success", description: "Game updated." });
+    setIsEditDialogOpen(false);
+    setEditingGame(null);
+    fetchGames();
+  }
+};
+
+
   const handleResultChange = (gameId, team, value) => {
     setGames((prevGames) =>
       prevGames.map((g) =>
