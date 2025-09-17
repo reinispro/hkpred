@@ -12,41 +12,40 @@ const TopPage = () => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchLeaderboard = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('id, username, points, precise_draw_bonus, precise_score_bonus, goal_difference_bonus, correct_winner_bonus')
+      .order('points', { ascending: false })
+      .order('precise_draw_bonus', { ascending: false })
+      .order('precise_score_bonus', { ascending: false })
+      .order('goal_difference_bonus', { ascending: false })
+      .order('correct_winner_bonus', { ascending: false })
+      .limit(20);
+
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: "Error fetching leaderboard",
+        description: error.message,
+      });
+    } else {
+      setLeaderboard(data);
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const fetchLeaderboard = async () => {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('id, username, points, full_name, precise_draw_bonus, precise_score_bonus, goal_difference_bonus, correct_winner_bonus')
-        .order('points', { ascending: false })
-        .order('precise_draw_bonus', { ascending: false })
-        .order('precise_score_bonus', { ascending: false })
-        .order('goal_difference_bonus', { ascending: false })
-        .order('correct_winner_bonus', { ascending: false })
-        .limit(20);
-
-      if (error) {
-        toast({
-          variant: "destructive",
-          title: "Error fetching leaderboard",
-          description: error.message,
-        });
-      } else {
-        setLeaderboard(data);
-      }
-      setLoading(false);
-    };
-
     fetchLeaderboard();
 
-    // 👇 Realtime listener uz profiles
+    // 👇 Realtime listener
     const profilesChannel = supabase
       .channel('profiles-top-channel')
       .on(
         'postgres_changes',
         { event: '*', schema: 'public', table: 'profiles' },
         () => {
-          console.log('Realtime leaderboard update');
           fetchLeaderboard();
         }
       )
@@ -55,7 +54,7 @@ const TopPage = () => {
     return () => {
       supabase.removeChannel(profilesChannel).catch(console.error);
     };
-  }, [toast]);
+  }, []);
 
   const getRankIcon = (index) => {
     if (index === 0) return <Crown className="inline-block h-5 w-5 text-yellow-400 mr-2" />;
@@ -116,19 +115,19 @@ const TopPage = () => {
                         <div className="flex items-center gap-3 text-xs text-white/70">
                           <div className="flex items-center gap-1" title="Precise Draw (12pts)">
                             <Star className="h-3 w-3 text-cyan-400" />
-                            <span>{player.precise_draw_bonus}</span>
+                            <span>{player.precise_draw_bonus || 0}</span>
                           </div>
                           <div className="flex items-center gap-1" title="Precise Score (10pts)">
                             <Target className="h-3 w-3 text-green-400" />
-                            <span>{player.precise_score_bonus}</span>
+                            <span>{player.precise_score_bonus || 0}</span>
                           </div>
                           <div className="flex items-center gap-1" title="Goal Diff. / Draw (6pts)">
                             <ChevronsRight className="h-3 w-3 text-yellow-400" />
-                            <span>{player.goal_difference_bonus}</span>
+                            <span>{player.goal_difference_bonus || 0}</span>
                           </div>
                           <div className="flex items-center gap-1" title="Correct Winner (4pts)">
                             <CheckCircle2 className="h-3 w-3 text-fuchsia-400" />
-                            <span>{player.correct_winner_bonus}</span>
+                            <span>{player.correct_winner_bonus || 0}</span>
                           </div>
                         </div>
                       </TableCell>
