@@ -120,19 +120,11 @@ const HomePage = () => {
                 <CardContent className="space-y-2">
                   <p className="flex items-center gap-2 text-white/80">
                     <Calendar className="h-4 w-4" />
-                    <span>
-                      {new Date(game.game_time).toLocaleDateString()}
-                    </span>
+                    <span>{new Date(game.game_time).toLocaleDateString("lv-LV")}</span>
                   </p>
                   <p className="flex items-center gap-2 text-white/80">
                     <Clock className="h-4 w-4" />
-                    <span>
-                      {new Date(game.game_time).toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        hour12: false,
-                      })}
-                    </span>
+                    <span>{new Date(game.game_time).toLocaleTimeString("lv-LV", { hour: "2-digit", minute: "2-digit", hour12: false })}</span>
                     <span className="ml-2 text-cyan-300 font-mono">
                       {getCountdown(game.game_time)}
                     </span>

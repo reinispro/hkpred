@@ -212,10 +212,14 @@ const PredictPage = () => {
                             </CardTitle>
                             <CardDescription className="text-white/70 flex items-center gap-2">
                               <Clock className="h-4 w-4" />
-                              <span>{gameTime.toLocaleString()}</span>
+                              <span>
+                                {gameTime.toLocaleDateString("lv-LV")}{" "}
+                                {gameTime.toLocaleTimeString("lv-LV", { hour: "2-digit", minute: "2-digit", hour12: false })}
+                              </span>
                             </CardDescription>
                             <CardDescription className="text-amber-300/80 text-xs">
-                              Predictions lock at {lockTime.toLocaleTimeString()}
+                              Prognozes slēdzas {lockTime.toLocaleDateString("lv-LV")}{" "}
+                              {lockTime.toLocaleTimeString("lv-LV", { hour: "2-digit", minute: "2-digit", hour12: false })}
                             </CardDescription>
                           </CardHeader>
                           <CardContent className="space-y-4">

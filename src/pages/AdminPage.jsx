@@ -889,7 +889,8 @@ const handleUpdateGame = async (e) => {
                             <TableCell>{game.league}</TableCell>
 
                             <TableCell>
-                              {new Date(game.game_time).toLocaleString()}
+                              {new Date(game.game_time).toLocaleDateString("lv-LV")}{" "}
+                              {new Date(game.game_time).toLocaleTimeString("lv-LV", { hour: "2-digit", minute: "2-digit", hour12: false })}
                             </TableCell>
 
                             <TableCell>{game.status}</TableCell>

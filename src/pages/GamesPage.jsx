@@ -259,7 +259,8 @@ const GamesPage = () => {
                           )}
                         </TableCell>
                         <TableCell className="text-white/80">
-                          {new Date(game.game_time).toLocaleDateString()}
+                          {new Date(game.game_time).toLocaleDateString("lv-LV")}{" "}
+                          {new Date(game.game_time).toLocaleTimeString("lv-LV", { hour: "2-digit", minute: "2-digit", hour12: false })}
                         </TableCell>
                         <TableCell>
                           {canViewOthers ? (
