@@ -33,7 +33,7 @@ export default function ContentEditor({ slug }) {
     setLoading(true);
     const { error } = await supabase
       .from("pages_content")
-      .upsert({ slug, content });
+      .upsert({ slug, content }, { onConflict: "slug" });
 
     if (error) {
       toast({ variant: "destructive", title: "Kļūda", description: error.message });
