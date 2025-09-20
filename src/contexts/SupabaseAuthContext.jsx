@@ -173,7 +173,7 @@ export const SupabaseAuthProvider = ({ children }) => {
 
   if (user && !user.approved && !window.location.pathname.includes('/auth')) {
     return (
-      <div className="min-h-screen w-full bg-gradient-to-br from-cyan-300 via-blue-500 to-indigo-600 flex flex-col items-center justify-center text-white p-4">
+      <div className="flex items-center justify-center min-h-screen w-full bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white p-4">
         <div className="text-center glass-card p-8 rounded-xl shadow-2xl max-w-md">
           <h1 className="text-4xl font-bold mb-4">
             Lietotājs gaida administratora apstiprinājumu

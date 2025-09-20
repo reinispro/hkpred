@@ -73,7 +73,7 @@ const AuthPage = () => {
     } else {
       toast({
         title: 'Reģistrācija veiksmīga!',
-        description: 'Uzgaidi kamēr administrators tevi apstiprinās.',
+        description: 'Vispirms dodies uz savu epastu un apstiprini reģistrāciju, tad gaidi kamēr administrators tevi apstiprinās.',
       })
     }
 
