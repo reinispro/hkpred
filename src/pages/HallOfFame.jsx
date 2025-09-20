@@ -29,7 +29,7 @@ const HallOfFame = () => {
           🏆 Slavas zāle 🏆
         </h1>
         <p className="text-center text-white/70 max-w-2xl mx-auto">
-          Šeit apkopoti visi mūsu čempioni – gadu gaitā pierādījuši sevi kā īsti prognožu meistari.
+          Zemāk iespējams iepazīties ar labākajiem no labākajiem (Prognožu spēļu uzvarētājiem).
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -49,7 +49,7 @@ const HallOfFame = () => {
                   {/* Visi karogi */}
                   {champ.countries.map((country, i) =>
                     countryCodes[country] ? (
-                      <Flag key={i} country={country} size={24} />
+                      <Flag key={i} country={country} size={40} />
                     ) : null
                   )}
                   <span>{champ.event}</span>
