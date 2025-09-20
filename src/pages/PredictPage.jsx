@@ -7,6 +7,7 @@ import { supabase } from '@/lib/customSupabaseClient';
 import { useSupabaseAuth } from '@/contexts/SupabaseAuthContext';
 import { Gamepad2, Clock } from 'lucide-react';
 import { debounce } from 'lodash';
+import Flag from "@/components/Flag";
 
 const LEAGUE_ORDER = [
   "Pamata turnīrs",
@@ -206,9 +207,18 @@ const PredictPage = () => {
                       return (
                         <Card key={game.id} className={`glass-card text-white ${isLocked ? 'opacity-60' : ''}`}>
                           <CardHeader>
-                            <CardTitle className="flex items-center gap-2">
-                              <Gamepad2 />
-                              <span>{game.team_a} vs {game.team_b}</span>
+                            <CardTitle className="flex items-center justify-between text-xl">
+                              <div className="flex items-center gap-2">
+                                <Flag country={game.team_a} size={28} />
+                                <span>{game.team_a}</span>
+                              </div>
+
+                              <span className="mx-4 text-white/70 font-semibold">vs</span>
+
+                              <div className="flex items-center gap-2">
+                                <span>{game.team_b}</span>
+                                <Flag country={game.team_b} size={28} />
+                              </div>
                             </CardTitle>
                             <CardDescription className="text-white/70 flex items-center gap-2">
                               <Clock className="h-4 w-4" />
