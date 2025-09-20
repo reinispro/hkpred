@@ -19,6 +19,7 @@
               <Outlet />
             </motion.div>
           </main>
+          <BottomNav />
         </div>
       );
     };

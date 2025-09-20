@@ -1,6 +1,7 @@
 // /src/components/layout/BottomNav.jsx
 import { NavLink } from "react-router-dom";
 import { Home, Gamepad2, BarChart2, Trophy, Info } from "lucide-react";
+import { User } from "lucide-react";
 
 const navItems = [
   { to: "/", label: "Home", icon: Home },
@@ -8,6 +9,7 @@ const navItems = [
   { to: "/statistics", label: "Stats", icon: BarChart2 },
   { to: "/top", label: "Top", icon: Trophy },
   { to: "/rules", label: "Rules", icon: Info },
+  { to: "/profile", label: "Profile", icon: User },
 ];
 
 export default function BottomNav() {

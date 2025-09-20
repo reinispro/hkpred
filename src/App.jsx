@@ -12,6 +12,7 @@ import GamesPage from '@/pages/GamesPage'
 import StatisticsPage from '@/pages/StatisticsPage'
 import TopPage from '@/pages/TopPage'
 import RulesPage from '@/pages/RulesPage'
+import ProfilePage from "@/pages/ProfilePage";
 import AdminPage from '@/pages/AdminPage'
 import NotFoundPage from '@/pages/NotFoundPage'
 import WelcomeMessage from '@/components/WelcomeMessage'
@@ -19,6 +20,8 @@ import AdminRoute from '@/components/AdminRoute'
 
 import ForgotPassword from '@/pages/ForgotPassword'
 import AuthReset from '@/pages/AuthReset'
+
+
 
 function App() {
   const { session, loading } = useSupabaseAuth()
@@ -52,6 +55,7 @@ function App() {
               <Route path="statistics" element={<StatisticsPage />} />
               <Route path="top" element={<TopPage />} />
               <Route path="rules" element={<RulesPage />} />
+              <Route path="profile" element={<ProfilePage />} />
               <Route
                 path="admin"
                 element={
