@@ -29,7 +29,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-cyan-300 via-blue-500 to-indigo-600">
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white">
       <Helmet>
         <title>Prediction Game</title>
         <meta
