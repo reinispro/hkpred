@@ -24,7 +24,14 @@ const AuthReset = () => {
       const urlRefresh = hashParams.get('refresh_token')
       const urlType = hashParams.get('type')
 
+      console.log('AuthReset: Hash params found:', { 
+        hasAccess: !!urlAccess, 
+        hasRefresh: !!urlRefresh, 
+        type: urlType 
+      })
+
       if (urlAccess && urlRefresh && urlType === 'recovery') {
+        console.log('AuthReset: Setting session from URL tokens')
         try {
           // Set the session
           const { data, error } = await supabase.auth.setSession({
@@ -33,6 +40,7 @@ const AuthReset = () => {
           })
           
           if (error) {
+            console.error('AuthReset: Session set error:', error)
             toast({
               variant: 'destructive',
               title: 'Sesijas kļūda',
@@ -42,6 +50,7 @@ const AuthReset = () => {
             return
           }
           
+          console.log('AuthReset: Session set successfully')
           setAccessToken(urlAccess)
           setSessionReady(true)
           
@@ -49,6 +58,7 @@ const AuthReset = () => {
           window.history.replaceState(null, null, window.location.pathname)
           
         } catch (err) {
+          console.error('AuthReset: Session setup failed:', err)
           toast({
             variant: 'destructive',
             title: 'Sesijas kļūda',
@@ -61,9 +71,11 @@ const AuthReset = () => {
         const { data: sessionData } = await supabase.auth.getSession()
         
         if (sessionData.session) {
+          console.log('AuthReset: Using existing session')
           setAccessToken(sessionData.session.access_token)
           setSessionReady(true)
         } else {
+          console.log('AuthReset: No session found, redirecting to login')
           toast({
             variant: 'destructive',
             title: 'Sesija beigusies',
@@ -74,7 +86,10 @@ const AuthReset = () => {
       }
     }
 
-    initializeSession()
+    // Add a small delay to ensure the component is fully mounted
+    const timer = setTimeout(initializeSession, 100)
+    
+    return () => clearTimeout(timer)
   }, [toast, navigate])
 
   const handleSubmit = async (e) => {
@@ -213,7 +228,7 @@ const AuthReset = () => {
       <div className="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-cyan-300 via-blue-500 to-indigo-600">
         <Card className="glass-card w-full max-w-md text-white border-none">
           <CardHeader>
-            <CardTitle className="text-2xl text-center">Parole nomainīta!</CardTitle>
+            <CardTitle className="text-2xl text-center">✅ Parole nomainīta!</CardTitle>
           </CardHeader>
           <CardContent className="text-center space-y-4">
             <p className="text-white/90">
