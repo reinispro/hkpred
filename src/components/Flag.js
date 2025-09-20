@@ -1,19 +1,17 @@
-// src/components/Flag.js
 import countryCodes from "@/lib/countryCodes";
 
-const Flag = ({ country, size = 24 }) => {
+export default function Flag({ country, size = 24 }) {
   const code = countryCodes[country];
   
   if (!code) {
-    const fallbackContent = "?";
     return (
-      <span className="inline-block w-8 h-6 bg-gray-700 text-xs text-white flex items-center justify-center">
-        {fallbackContent}
+      <span 
+        className="inline-block w-8 h-6 bg-gray-700 text-xs text-white flex items-center justify-center"
+      >
+        ?
       </span>
     );
   }
-  
-  const flagHeight = (size * 3) / 4;
   
   return (
     <img
@@ -21,9 +19,7 @@ const Flag = ({ country, size = 24 }) => {
       alt={country}
       className="inline-block rounded-sm"
       width={size}
-      height={flagHeight}
+      height={Math.floor((size * 3) / 4)}
     />
   );
-};
-
-export default Flag;
+}
