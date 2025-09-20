@@ -9,6 +9,7 @@ const navItems = [
   { to: "/statistics", label: "Stats", icon: BarChart2 },
   { to: "/top", label: "Top", icon: Trophy },
   { to: "/rules", label: "Rules", icon: Info },
+  { to: "/hall-of-fame", label: "Hall", icon: Trophy },
   { to: "/profile", label: "Profile", icon: User },
 ];
 

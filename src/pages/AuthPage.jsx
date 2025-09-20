@@ -31,6 +31,7 @@ const AuthPage = () => {
   const [registerUsername, setRegisterUsername] = useState('')
   const [registerEmail, setRegisterEmail] = useState('')
   const [registerPassword, setRegisterPassword] = useState('')
+  const [registerConfirmPassword, setRegisterConfirmPassword] = useState('')
   const [isRegistering, setIsRegistering] = useState(false)
 
   const handleLogin = async (e) => {
@@ -57,6 +58,16 @@ const AuthPage = () => {
     e.preventDefault()
     setIsRegistering(true)
 
+    if (registerPassword !== registerConfirmPassword) {
+      toast({
+        variant: 'destructive',
+        title: 'Paroles nesakrīt',
+        description: 'Lūdzu, ievadi vienādas paroles abos laukos.',
+      })
+      setIsRegistering(false)
+      return
+    }
+
     const { error } = await signUp({
       email: registerEmail,
       password: registerPassword,
@@ -73,7 +84,8 @@ const AuthPage = () => {
     } else {
       toast({
         title: 'Reģistrācija veiksmīga!',
-        description: 'Vispirms dodies uz savu epastu un apstiprini reģistrāciju, tad gaidi kamēr administrators tevi apstiprinās.',
+        description:
+          'Vispirms apstiprini savu e-pastu, tad gaidi kamēr administrators tevi apstiprinās.',
       })
     }
 
@@ -223,6 +235,17 @@ const AuthPage = () => {
                         className="bg-white/20 border-white/30 placeholder:text-white/50"
                         value={registerPassword}
                         onChange={(e) => setRegisterPassword(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="confirm-password-register">Atkārtot paroli</Label>
+                      <Input
+                        id="confirm-password-register"
+                        type="password"
+                        className="bg-white/20 border-white/30 placeholder:text-white/50"
+                        value={registerConfirmPassword}
+                        onChange={(e) => setRegisterConfirmPassword(e.target.value)}
                         required
                       />
                     </div>

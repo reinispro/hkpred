@@ -17,6 +17,7 @@ import AdminPage from '@/pages/AdminPage'
 import NotFoundPage from '@/pages/NotFoundPage'
 import WelcomeMessage from '@/components/WelcomeMessage'
 import AdminRoute from '@/components/AdminRoute'
+import HallOfFame from "@/pages/HallOfFame";
 
 import ForgotPassword from '@/pages/ForgotPassword'
 import AuthReset from '@/pages/AuthReset'
@@ -55,6 +56,7 @@ function App() {
               <Route path="statistics" element={<StatisticsPage />} />
               <Route path="top" element={<TopPage />} />
               <Route path="rules" element={<RulesPage />} />
+              <Route path="/hall-of-fame" element={<HallOfFame />} />
               <Route path="profile" element={<ProfilePage />} />
               <Route
                 path="admin"

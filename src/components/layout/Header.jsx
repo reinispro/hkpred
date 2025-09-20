@@ -11,6 +11,7 @@ const navItems = [
   { to: '/statistics', label: 'Statistika' },
   { to: '/top', label: 'Tops' },
   { to: '/rules', label: 'Noteikumi' },
+  { to: '/hall-of-fame', label: 'Slavas zāle' },
 ];
 
 const adminNavItem = { to: '/admin', label: 'Admin' };
@@ -26,8 +27,12 @@ const Header = () => {
       <nav className="glass-card flex items-center justify-between p-2">
         {/* 🔹 Logo sadaļa */}
         <div className="flex items-center gap-2 mr-4">
-          <Gamepad2 className="h-8 w-8 text-white" />
-          <span className="font-bold text-xl text-white hidden sm:inline">OGsports</span>
+            <Link
+              to="/"
+              className="font-bold text-xl text-white hidden sm:inline hover:text-cyan-400 transition-colors"
+            >
+              OGsports
+            </Link>
         </div>
 
         {/* 🔹 Navigācijas pogas */}
