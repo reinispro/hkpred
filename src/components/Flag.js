@@ -1,7 +1,7 @@
 import React from "react";
 import countryCodes from "@/lib/countryCodes";
 
-export default function Flag({ country, size = 24 }) {
+export default function Flag({ country, size = 40 }) {
   const code = countryCodes[country];
   
   if (!code) {
