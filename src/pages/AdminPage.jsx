@@ -576,7 +576,7 @@ const handleUpdateGame = async (e) => {
         </h1>
 
         <Tabs defaultValue="users" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-white/10 text-white">
+          <TabsList className="grid w-full grid-cols-4 bg-white/10 text-white">
             <TabsTrigger value="users">User Management</TabsTrigger>
             <TabsTrigger value="games">Game Management</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>
