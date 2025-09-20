@@ -12,8 +12,8 @@ export default function Flag({ country, size = 24 }) {
   
   return React.createElement('img', {
     src: `https://flagcdn.com/w${size}/${code}.png`,
-    alt: country,
-    className: "inline-block rounded-sm",
+    alt: "",
+    className: "inline-block rounded-sm object-cover",
     width: size,
     height: Math.floor((size * 3) / 4)
   });
