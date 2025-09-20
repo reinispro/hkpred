@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Gamepad2, Trophy, BarChart, ListOrdered, ScrollText, UserCog, LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useSupabaseAuth } from '@/contexts/SupabaseAuthContext';
+import { Link } from "react-router-dom";
 
 const navItems = [
   { to: '/', label: 'Sākums' },
