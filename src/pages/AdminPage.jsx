@@ -24,6 +24,7 @@ import {
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Trash2, Edit, RotateCcw } from 'lucide-react';
 import { useSupabaseAuth } from '@/contexts/SupabaseAuthContext';
+import ContentEditor from "@/components/ContentEditor";
 
 // Pieejamās līgas, ko var norādīt spēlēm
 const LEAGUE_OPTIONS = [
@@ -579,6 +580,7 @@ const handleUpdateGame = async (e) => {
             <TabsTrigger value="users">User Management</TabsTrigger>
             <TabsTrigger value="games">Game Management</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>
+            <TabsTrigger value="content">Content</TabsTrigger>
           </TabsList>
 
           {/* =========================
@@ -978,6 +980,22 @@ const handleUpdateGame = async (e) => {
           <TabsContent value="settings">
             <AdminSettingsTab />
           </TabsContent>
+
+          <TabsContent value="content">
+            <Card className="glass-card text-white">
+              <CardHeader>
+              <CardTitle>Manage Page Content</CardTitle>
+              <CardDescription className="text-white/70">
+                Edit static pages (Markdown supported).
+              </CardDescription>
+              </CardHeader>
+              <CardContent>
+              <ContentEditor slug="rules" />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+
         </Tabs>
       </div>
 

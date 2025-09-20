@@ -27,7 +27,7 @@ const Header = () => {
         {/* 🔹 Logo sadaļa */}
         <div className="flex items-center gap-2 mr-4">
           <Gamepad2 className="h-8 w-8 text-white" />
-          <span className="font-bold text-xl text-white hidden sm:inline">Predicto</span>
+          <span className="font-bold text-xl text-white hidden sm:inline">OGsports</span>
         </div>
 
         {/* 🔹 Navigācijas pogas */}
