@@ -54,16 +54,16 @@ export default function ProfilePage() {
   return (
     <>
       <Helmet>
-        <title>Profile</title>
+        <title>Profils</title>
       </Helmet>
       <Card className="glass-card text-white max-w-md mx-auto">
         <CardHeader>
-          <CardTitle>My Profile</CardTitle>
+          <CardTitle>Mans Profils</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSave} className="space-y-4">
             <div>
-              <label className="block text-sm text-white/70 mb-1">Username</label>
+              <label className="block text-sm text-white/70 mb-1">Lietotājvārds</label>
               <Input
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -71,7 +71,7 @@ export default function ProfilePage() {
               />
             </div>
             <Button type="submit" disabled={loading}>
-              {loading ? "Saving..." : "Save Changes"}
+              {loading ? "Saglabā..." : "Saglabāt"}
             </Button>
           </form>
         </CardContent>

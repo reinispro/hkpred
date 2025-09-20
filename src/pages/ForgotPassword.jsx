@@ -45,7 +45,7 @@ const { error } = await supabase.auth.resetPasswordForEmail(email, {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-cyan-300 via-blue-500 to-indigo-600 p-4">
+    <div className="flex items-center justify-center min-h-screen w-full bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white p-4">
       <Card className="glass-card w-full max-w-md text-white border-none">
         {!submitted ? (
           <>

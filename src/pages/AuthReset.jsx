@@ -225,7 +225,7 @@ const AuthReset = () => {
   // Success state
   if (isSuccess) {
     return (
-      <div className="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-cyan-300 via-blue-500 to-indigo-600">
+      <div className="flex items-center justify-center min-h-screen w-full bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white p-4">
         <Card className="glass-card w-full max-w-md text-white border-none">
           <CardHeader>
             <CardTitle className="text-2xl text-center">Parole nomainīta!</CardTitle>
@@ -238,7 +238,7 @@ const AuthReset = () => {
           <CardFooter>
             <Button
               onClick={handleContinueToLogin}
-              className="w-full bg-green-500 hover:bg-green-600 text-white font-bold"
+              className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold"
             >
               Turpināt uz ielogošanos
             </Button>
@@ -250,7 +250,7 @@ const AuthReset = () => {
 
   // Reset form
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-cyan-300 via-blue-500 to-indigo-600">
+    <div className="flex items-center justify-center min-h-screen w-full bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white p-4">
       <Card className="glass-card w-full max-w-md text-white border-none">
         <CardHeader>
           <CardTitle className="text-2xl">Atjaunot paroli</CardTitle>
@@ -287,7 +287,7 @@ const AuthReset = () => {
           <CardFooter>
             <Button
               type="submit"
-              className="w-full bg-cyan-400 hover:bg-cyan-500 text-slate-900 font-bold"
+              className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold"
               disabled={loading}
             >
               {loading ? 'Saglabā...' : 'Saglabāt jauno paroli'}

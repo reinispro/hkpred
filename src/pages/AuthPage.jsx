@@ -158,7 +158,7 @@ const AuthPage = () => {
                   <CardFooter>
                     <Button
                       type="submit"
-                      className="w-full bg-cyan-400 hover:bg-cyan-500 text-slate-900 font-bold"
+                      className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold"
                       disabled={isLoggingIn}
                     >
                       {isLoggingIn ? 'Signing In...' : 'Autorizēties'}
@@ -230,7 +230,7 @@ const AuthPage = () => {
                   <CardFooter>
                     <Button
                       type="submit"
-                      className="w-full bg-cyan-400 hover:bg-cyan-500 text-slate-900 font-bold"
+                      className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold"
                       disabled={isRegistering}
                     >
                       {isRegistering ? 'Registering...' : 'Reģistrēties'}

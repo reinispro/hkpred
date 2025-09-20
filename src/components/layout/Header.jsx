@@ -1,21 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { 
-  Gamepad2, Trophy, BarChart, ListOrdered, ScrollText, UserCog, LogOut, User 
-} from 'lucide-react';
+import { Gamepad2, Trophy, BarChart, ListOrdered, ScrollText, UserCog, LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useSupabaseAuth } from '@/contexts/SupabaseAuthContext';
 
 const navItems = [
-  { to: '/', icon: Gamepad2, label: 'Sākums' },
-  { to: '/predict', icon: Trophy, label: 'Prognozēt' },
-  { to: '/games', icon: ListOrdered, label: 'Spēles' },
-  { to: '/statistics', icon: BarChart, label: 'Statistika' },
-  { to: '/top', icon: Trophy, label: 'Tops' },
-  { to: '/rules', icon: ScrollText, label: 'Noteikumi' },
+  { to: '/', label: 'Sākums' },
+  { to: '/predict', label: 'Prognozēt' },
+  { to: '/games', label: 'Spēles' },
+  { to: '/statistics', label: 'Statistika' },
+  { to: '/top', label: 'Tops' },
+  { to: '/rules', label: 'Noteikumi' },
 ];
 
-const adminNavItem = { to: '/admin', icon: UserCog, label: 'Admin' };
+const adminNavItem = { to: '/admin', label: 'Admin' };
 
 const Header = () => {
   const { signOut, user } = useSupabaseAuth();
@@ -26,18 +24,21 @@ const Header = () => {
   return (
     <header className="sticky top-4 mx-auto max-w-7xl w-[calc(100%-2rem)] z-50">
       <nav className="glass-card flex items-center justify-between p-2">
-        {/* Kreisā puse: navigācijas pogas */}
+        {/* 🔹 Logo sadaļa */}
+        <div className="flex items-center gap-2 mr-4">
+          <Gamepad2 className="h-8 w-8 text-white" />
+          <span className="font-bold text-xl text-white hidden sm:inline">Predicto</span>
+        </div>
+
+        {/* 🔹 Navigācijas pogas */}
         <div className="flex items-center gap-2">
           {allNavItems.map((item) => (
             <NavLink key={item.to} to={item.to}>
               {({ isActive }) => (
                 <Button
                   variant={isActive ? 'secondary' : 'ghost'}
-                  className={`text-white hover:bg-white/20 ${
-                    isActive ? 'bg-white/30' : ''
-                  }`}
+                  className={`text-white hover:bg-white/20 ${isActive ? 'bg-white/30' : ''}`}
                 >
-                  <item.icon className="mr-2 h-4 w-4" />
                   {item.label}
                 </Button>
               )}
@@ -45,15 +46,13 @@ const Header = () => {
           ))}
         </div>
 
-        {/* Labā puse: Profils un Iziet */}
+        {/* 🔹 Profils un Iziet */}
         <div className="flex items-center gap-2">
           <NavLink to="/profile">
             {({ isActive }) => (
               <Button
                 variant={isActive ? 'secondary' : 'ghost'}
-                className={`text-white hover:bg-white/20 ${
-                  isActive ? 'bg-white/30' : ''
-                }`}
+                className={`text-white hover:bg-white/20 ${isActive ? 'bg-white/30' : ''}`}
               >
                 <User className="mr-2 h-4 w-4" />
                 Profils
