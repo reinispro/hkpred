@@ -29,7 +29,7 @@ const countryCodes = {
 
   // Ja nākotnē parādās vēl valstu => pievieno šeit
   "Krievija": "ru",
-  "Ķīna": "ch"
+  "Ķīna": "cn"
 };
 
 export default countryCodes;
