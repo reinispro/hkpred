@@ -6,7 +6,7 @@ const Flag = ({ country, size = 24 }) => {
   if (!code) {
     return (
       <span className="inline-block w-8 h-6 bg-gray-700 text-xs text-white flex items-center justify-center">
-        {"?"}
+        ?
       </span>
     );
   }
