@@ -23,9 +23,13 @@ const ForgotPassword = () => {
     e.preventDefault()
     setLoading(true)
 
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth/reset`,
-    })
+const redirectUrl = import.meta.env.PROD 
+  ? 'https://hkpred.vercel.app/auth/reset'
+  : `${window.location.origin}/auth/reset`
+
+const { error } = await supabase.auth.resetPasswordForEmail(email, {
+  redirectTo: redirectUrl,
+})
 
     if (error) {
       toast({
