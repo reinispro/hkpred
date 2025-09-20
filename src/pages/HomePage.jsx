@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { supabase } from '@/lib/customSupabaseClient';
 import { Link } from 'react-router-dom';
+import Flag from "@/components/Flag";
 
 const HomePage = () => {
   const { toast } = useToast();
@@ -108,10 +109,15 @@ const HomePage = () => {
               <Card key={game.id} className="glass-card text-white">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between text-xl">
-                    <span>
-                      {game.team_a} vs {game.team_b}
-                    </span>
-                    <Gamepad2 className="h-6 w-6 text-cyan-300" />
+                    <div className="flex items-center gap-2">
+                      <Flag country={game.team_a} />
+                      <span>{game.team_a}</span>
+                    </div>
+                    <span className="mx-2">vs</span>
+                    <div className="flex items-center gap-2">
+                      <Flag country={game.team_b} />
+                      <span>{game.team_b}</span>
+                    </div>
                   </CardTitle>
                   <CardDescription className="text-white/70">
                     {game.league || "Friendly Match"}
