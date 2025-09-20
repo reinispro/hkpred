@@ -25,9 +25,11 @@ const countryCodes = {
   "Japāna": "jp",
   "Lietuva": "lt",
   "Polija": "pl",
-  "Kroācija": "hr"
+  "Kroācija": "hr",
 
   // Ja nākotnē parādās vēl valstu => pievieno šeit
+  "Krievija": "ru",
+  "Ķīna": "ch"
 };
 
 export default countryCodes;

@@ -14,6 +14,9 @@ const champions = [
   { year: 2021, player: "RingoLoto", event: "Pasaules čempionāts hokejā (Latvija)", countries: ["Latvija"], points: "?" },
   { year: 2022, player: "Goldmens", event: "Ziemas Olimpiāde (Ķīna)", countries: ["Ķīna"], points: "?" },
   { year: 2022, player: "Kalervo Kummola", event: "Pasaules čempionāts hokejā (Somija)", countries: ["Somija"], points: "234" },
+{ year: 2023, player: "McSims", event: "Pasaules čempionāts hokejā (Somija – Latvija)", countries: ["Somija", "Latvija"], points: "252" },
+  { year: 2024, player: "piedo lucu", event: "Pasaules čempionāts hokejā (Čehija)", countries: ["Čehija"], points: "234" },
+  { year: 2025, player: "ringo_loto", event: "Pasaules čempionāts hokejā (Zviedrija – Dānija)", countries: ["Zviedrija", "Dānija"], points: "236" },
 ];
 
 const HallOfFame = () => {
