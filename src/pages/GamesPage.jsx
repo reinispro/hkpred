@@ -56,8 +56,8 @@ const OtherPredictionsDialog = ({ gameId, gameName }) => {
             <Table>
               <TableHeader>
                 <TableRow className="border-white/20 hover:bg-white/10">
-                  <TableHead className="text-white/80">Player</TableHead>
-                  <TableHead className="text-white/80 text-right">Prediction</TableHead>
+                  <TableHead className="text-white/80">Dalībnieks</TableHead>
+                  <TableHead className="text-white/80 text-right">Prognoze</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
