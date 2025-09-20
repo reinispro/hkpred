@@ -12,7 +12,6 @@
       { to: '/statistics', icon: BarChart, label: 'Statistika' },
       { to: '/top', icon: Trophy, label: 'Tops' },
       { to: '/rules', icon: ScrollText, label: 'Noteikumi' },
-      { to: "/profile", icon: User, label: "Profils" },
     ];
     
     const adminNavItem = { to: '/admin', icon: UserCog, label: 'Admin' };
