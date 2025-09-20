@@ -209,7 +209,7 @@ const PredictPage = () => {
                           <CardHeader>
                             <CardTitle className="flex items-center justify-between text-xl">
                               <div className="flex items-center gap-2">
-                                <Flag country={game.team_a} size={28} />
+                                <Flag country={game.team_a} size={40} />
                                 <span>{game.team_a}</span>
                               </div>
 
@@ -217,7 +217,7 @@ const PredictPage = () => {
 
                               <div className="flex items-center gap-2">
                                 <span>{game.team_b}</span>
-                                <Flag country={game.team_b} size={28} />
+                                <Flag country={game.team_b} size={40} />
                               </div>
                             </CardTitle>
                             <CardDescription className="text-white/70 flex items-center gap-2">

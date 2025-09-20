@@ -14,5 +14,7 @@ export default function Flag({ country, size = 40 }) {
     src: `https://flagcdn.com/w${size}/${code}.png`,
     alt: "",
     className: "inline-block rounded-sm object-cover",
+    width: size,
+    height: Math.floor((size * 3) / 4)
   });
 }

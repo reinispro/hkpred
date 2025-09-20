@@ -108,15 +108,19 @@ const HomePage = () => {
             {upcomingGames.map((game) => (
               <Card key={game.id} className="glass-card text-white">
                 <CardHeader>
-                  <CardTitle className="flex items-center justify-between text-xl">
+                  <CardTitle className="flex items-center justify-between text-xl w-full">
+                    {/* Kreisā komanda */}
                     <div className="flex items-center gap-2">
                       <Flag country={game.team_a} />
                       <span>{game.team_a}</span>
                     </div>
+
                     <span className="mx-2">vs</span>
+
+                    {/* Labā komanda */}
                     <div className="flex items-center gap-2">
-                      <Flag country={game.team_b} />
                       <span>{game.team_b}</span>
+                      <Flag country={game.team_b} />
                     </div>
                   </CardTitle>
                   <CardDescription className="text-white/70">
