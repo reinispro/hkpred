@@ -3,10 +3,11 @@
     import { Outlet } from 'react-router-dom';
     import Header from '@/components/layout/Header';
     import { motion } from 'framer-motion';
+    import BottomNav from "@/components/layout/BottomNav";
 
     const AppLayout = ({ onLogout }) => {
       return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col pb-14 md:pb-0">
           <Header onLogout={onLogout} />
           <main className="flex-grow p-4 md:p-8">
             <motion.div
