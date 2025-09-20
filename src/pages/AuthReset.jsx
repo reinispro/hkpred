@@ -228,7 +228,7 @@ const AuthReset = () => {
       <div className="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-cyan-300 via-blue-500 to-indigo-600">
         <Card className="glass-card w-full max-w-md text-white border-none">
           <CardHeader>
-            <CardTitle className="text-2xl text-center">✅ Parole nomainīta!</CardTitle>
+            <CardTitle className="text-2xl text-center">Parole nomainīta!</CardTitle>
           </CardHeader>
           <CardContent className="text-center space-y-4">
             <p className="text-white/90">
